@@ -1,0 +1,172 @@
+##################################################################################
+# Title:        Chi square simulation with R
+# Programmer:   Mark Bounthavong
+# Date:         23 October 2018
+# Date updated: 10 December 2018
+# Updated by:   Mark Bounthavong
+##################################################################################
+
+##################################################################################
+
+## I used the tutorial from the followin URL:
+## http://ditraglia.com/Econ103Public/Rtutorials/Rtutorial4.html
+##################################################################################
+
+
+
+##################################################################################
+## Simulate a d20 dice roll with 100 trials
+##################################################################################
+sims <- sample(x = 1:20, size=100, replace=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Generate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trials=100)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=100)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+
+##################################################################################
+## Simulate a d20 dice roll with 1000 trials
+##################################################################################
+sims <- sample(x = 1:20, size=1000, replace=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Generate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trails = 1000)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=1000)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+##################################################################################
+## Simulate a d20 dice roll with 10,000 trials
+##################################################################################
+sims <- sample(x = 1:20, size=10000, replac=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Genderate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trails = 10,000)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=10,000)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+
+##################################################################################
+## Simulate a d20 dice roll with 100,000 trials
+##################################################################################
+sims <- sample(x = 1:20, size=100000, replace=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Generate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trails = 100,000)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=100,000)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+
+
+##################################################################################
+## Chi square test with matrices -- Test of homogeneity
+##################################################################################
+contingency.table <- matrix(c(7, 55, 489, 475, 293, 38, 61, 129, 570, 431, 154, 12), ncol = 6, byrow = TRUE, 
+                            dimname = list(Groups = c("Cases", "Controls"), 
+                            "Daily # cigarettes" = c("None", "Less than 5", "5 to 14", "15 to 24", "25 to 49", "50 or more")))
+contingency.table 
+
+
+## Chi square test
+chisq.test(contingency.table)
+
+
+
+
+
+##################################################################################
+## Simulate a d20 dice roll with 100 trials -- BIASED sample
+## This is a biased d20 where the number 1 has an 80% probability of hitting.
+##################################################################################
+sims <- sample(x = 1:20, size=100, prob=c(0.8, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632), replace=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Generate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trials=100)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=100)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+
+
+
+##################################################################################
+## Simulate a d20 dice roll with 10000 trials -- BIASED sample
+## This is a biased d20 where the number 1 has an 80% probability of hitting.
+##################################################################################
+sims <- sample(x = 1:20, size=10000, prob=c(0.8, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632, 0.01052632), replace=TRUE)
+
+## Generate frequency table
+table(sims)
+
+## Generate probability table
+prob <- table(sims) / length(sims)
+
+## Plot the frequency of the rolls
+plot(table(sims), xlab = 'd20 rolls', ylab = 'Frequency', main = 'Frequency of events for each possible d20 roll (Trials=10,000)')
+
+## Plot the probability of the rolls
+plot(prob, xlab = 'd20 rolls', ylab = 'Frequency', main = 'Probability of events for each possible d20 roll (Trials=10,000)')
+
+## Perform chi square test
+chi2 <- chisq.test(table(sims))
+chi2
+
+
+
+
+
+
